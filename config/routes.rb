@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server, at: '/cable'
   match '/calculate_investment', to: 'investments#calculate_investment', via: [:get, :post]
 
   resources :investments do
@@ -9,6 +10,4 @@ Rails.application.routes.draw do
   end
 
   root :to=> 'investments#calculate_investment'
-
-  mount ActionCable.server => '/cable'
 end
