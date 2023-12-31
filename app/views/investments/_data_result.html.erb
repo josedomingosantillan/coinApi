@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'application' %>
+<% if @cryptocurrency_data.present? %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title"><h1>Detalles de tu inversión</h1></div>
+        <div class="ibox-content">
+          <table class="table footable table-header" data-show-toggle="false" data-expand-fisrt="true">
+            <thead>
+            <tr>
+              <th class="text-left">Criptomoneda</th>
+              <th class="text-left">Precio (USD)</th>
+              <th class="text-left">Ganancia en USD por año</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @cryptocurrency_data.each do |data| %>
+              <tr>
+                <td class="text-left"><%= data['name'] %></td>
+                <td class="text-left"><%= data['price'] %> USD</td>
+                <td class="text-left"><%= data['profit_per_year'] %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <%= link_to 'Volver', root_path, class: 'btn btn-primary' %>
+          <%= form_tag(export_csv_investments_path(format: :csv), method: :post) do %>
+            <%= hidden_field_tag :balance, @balance %>
+            <%= hidden_field_tag :bitcoin_investment, @bitcoin_investment %>
+            <%= hidden_field_tag :ether_investment, @ether_investment %>
+            <%= hidden_field_tag :cardano_investment, @cardano_investment %>
+            <%= submit_tag 'Exportar a CSV', class: 'btn btn-primary' %>
+          <% end %>
+
+          <%= form_tag(export_json_investments_path(format: :json), method: :post) do %>
+            <%= hidden_field_tag :balance, @balance %>
+            <%= hidden_field_tag :bitcoin_investment, @bitcoin_investment %>
+            <%= hidden_field_tag :ether_investment, @ether_investment %>
+            <%= hidden_field_tag :cardano_investment, @cardano_investment %>
+            <%= submit_tag 'Exportar a JSON', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title"><h1>Calculadora de inversión</h1></div>
+      <div class="ibox-content">
+        <%= form_with(model: @user, url: calculate_investment_path, method: :post, remote: true) do |form| %>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-6">
+              <div class="form-group mt-1">
+                <%= form.label :balance, 'Balance en dólares' %>
+                <%= form.number_field :balance, class: "form-control", placeholder: "Cantidad en dolares" %>
+              </div>
+            </div>
+
+
+            <div class="col-lg-6 col-md-6 col-xs-6 col-6">
+              <div class="form-group mt-1">
+                <%= form.label :bitcoin_investment, 'Inversión en Bitcoin' %>
+                <%= form.number_field :bitcoin_investment, class: "form-control", placeholder: "Cantidad en dolares" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6 col-6">
+              <div class="form-group mt-1">
+                <%= form.label :ether_investment, 'Inversión en Ether' %>
+                <%= form.number_field :ether_investment, class: "form-control", placeholder: "Cantidad en dolares" %>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-xs-6 col-6">
+              <div class="form-group mt-1">
+                <%= form.label :cardano_investment, 'Inversión en Cardano' %>
+                <%= form.number_field :cardano_investment, class: "form-control", placeholder: "Cantidad en dolares" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-12">
+              <div class="form-group">
+                <%= form.submit 'Calcular Inversión', class: "btn btn-primary w-100 mb-3 mt-2" %>
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-xs-12 col-12">
+            <div class="table footable" id="data_result">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
